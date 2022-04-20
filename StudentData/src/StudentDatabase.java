@@ -42,20 +42,50 @@ public class StudentDatabase {
 				if (response.equalsIgnoreCase("age")) {
 					System.out.println(studentName[inputNum-1] + "is " + studentAge[inputNum-1] + " years old. Would you like to know more? (enter \"yes\" or \"no\"): ");
 					String response2 = scnr.nextLine();
-					if (response2.equalsIgnoreCase("no")) {
-						cont2 = false;
-					} 
+					
+					boolean moreInfoValidation = true;
+					do {
+						if (response2.equalsIgnoreCase("no")) {
+							cont2 = false;
+							moreInfoValidation = false;
+							System.out.println("Thanks!");
+						}
+						else if(response2.equalsIgnoreCase("yes")) {
+							System.out.println("What would you like to know, \"hometown\" or \"age\" ?");
+							response = scnr.nextLine();
+							moreInfoValidation = false;
+						}
+						else {
+							System.out.println("That was not a valid input. Enter \"yes\" or \"no\".");
+							response2 = scnr.nextLine();
+						}
+					}while(moreInfoValidation);				
 				}
 				else if (response.equalsIgnoreCase("hometown")) {
 					System.out.println(studentName[inputNum-1] + " is from " + studentHometown[inputNum-1] + ". Would you like to know more? (enter \"yes\" or \"no\"): ");
 					String response2 = scnr.nextLine();
-					if (response2.equalsIgnoreCase("no")) {
-						cont2 = false;
-					}
-
+					boolean moreInfoValidation = true;
+					
+					do {
+						if (response2.equalsIgnoreCase("no")) {
+							cont2 = false;
+							moreInfoValidation = false;
+							System.out.println("Thanks!");
+						}
+						else if(response2.equalsIgnoreCase("yes")) {
+							System.out.println("What would you like to know, \"hometown\" or \"age\" ?");
+							response = scnr.nextLine();
+							moreInfoValidation = false;
+						}
+						else {
+							System.out.println("That was not a valid input. Enter \"yes\" or \"no\".");
+							response2 = scnr.nextLine();
+						}
+					}while(moreInfoValidation);
 				}
 				else {
 					System.out.println("That data does not exist. Please Try again. (enter \"hometown\" or \"age\") ");
+					response = scnr.nextLine();
 				}
 			}
 			catch(InputMismatchException e){
@@ -63,9 +93,5 @@ public class StudentDatabase {
 				System.out.println("That data does not exist. Please Try again. (enter \"hometown\" or \"age\") ");
 			}
 		}while (cont2);
-		
-		
-	
 	}
-
 }
